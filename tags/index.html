@@ -50,11 +50,11 @@
     <script src="/js/cursor.js"></script>
 
     <!-- 白天和黑夜主题 -->
-<div class="sum-moon-box">
-  <a class="btn-floating btn-large waves-effect waves-light" onclick="switchNightMode()" title="切换主题" >
-    <i id="sum-moon-icon" class="fas fa-sun" style="width:48px; height:48px; font-size: 28px;"></i>
+<!-- <div class="sum-moon-box">
+  <a class="btn-floating btn-large waves-effect waves-light" onclick="switchNightMode()" title="深浅主题切换" >
+    <i id="sum-moon-icon" class="fas fa-moon" style="width:48px; height:48px; font-size: 28px;"></i>
   </a>
-</div>
+</div> -->
 
 <script>
   function switchNightMode() {
@@ -163,6 +163,11 @@
   <li>
     <a href="#searchModal" class="modal-trigger waves-effect waves-light">
       <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a class="modal-trigger waves-effect waves-light" onclick="switchNightMode()" title="深浅主题切换" >
+      <i id="sum-moon-icon" class="fas fa-moon" style="zoom: 0.7;"></i>
     </a>
   </li>
 </ul>
@@ -371,20 +376,29 @@
             <div class="tag-chips">
                 
                 
-                <a href="/tags/Hexo/" title="Hexo: 3">
+                <a href="/tags/Hexo/" title="Hexo: 4">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
                             data-tagname="Hexo" style="background-color: #F9EBEA;">Hexo
-                        <span class="tag-length">3</span>
+                        <span class="tag-length">4</span>
                     </span>
                 </a>
                 
                 
-                <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" title="博客搭建: 3">
+                <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" title="博客搭建: 4">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
                             data-tagname="博客搭建" style="background-color: #F5EEF8;">博客搭建
-                        <span class="tag-length">3</span>
+                        <span class="tag-length">4</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/Github/" title="Github: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="Github" style="background-color: #D5F5E3;">Github
+                        <span class="tag-length">1</span>
                     </span>
                 </a>
                 
@@ -412,7 +426,7 @@
 <script type="text/javascript">
     
 
-    $('#tag-wordcloud').jQCloud([{"text":"Hexo","weight":3,"link":"/tags/Hexo/"},{"text":"博客搭建","weight":3,"link":"/tags/博客搭建/"}], {
+    $('#tag-wordcloud').jQCloud([{"text":"Hexo","weight":4,"link":"/tags/Hexo/"},{"text":"博客搭建","weight":4,"link":"/tags/博客搭建/"},{"text":"Github","weight":1,"link":"/tags/Github/"}], {
         autoResize: true
     });
 </script>
@@ -437,7 +451,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">3.1k</span>&nbsp;字
+                class="white-color">3.7k</span>&nbsp;字
             
             
             
@@ -642,7 +656,7 @@ $(function () {
 
     <!-- 回到顶部按钮 -->
 <div id="backTop" class="top-scroll">
-    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!" title="返回顶部">
         <i class="fas fa-arrow-up"></i>
     </a>
 </div>

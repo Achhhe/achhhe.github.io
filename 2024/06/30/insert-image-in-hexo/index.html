@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hexo博客中插入图片, hexo,算法，计算机视觉，人工智能">
+    <meta name="keywords" content="Hexo+matery博客搭建之插入图片, hexo,算法，计算机视觉，人工智能">
     <meta name="description" content="记录学习之旅，巩固自我及启发后人">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Hexo博客中插入图片 | HeBlog</title>
+    <title>Hexo+matery博客搭建之插入图片 | HeBlog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -50,11 +50,11 @@
     <script src="/js/cursor.js"></script>
 
     <!-- 白天和黑夜主题 -->
-<div class="sum-moon-box">
-  <a class="btn-floating btn-large waves-effect waves-light" onclick="switchNightMode()" title="切换主题" >
-    <i id="sum-moon-icon" class="fas fa-sun" style="width:48px; height:48px; font-size: 28px;"></i>
+<!-- <div class="sum-moon-box">
+  <a class="btn-floating btn-large waves-effect waves-light" onclick="switchNightMode()" title="深浅主题切换" >
+    <i id="sum-moon-icon" class="fas fa-moon" style="width:48px; height:48px; font-size: 28px;"></i>
   </a>
-</div>
+</div> -->
 
 <script>
   function switchNightMode() {
@@ -163,6 +163,11 @@
   <li>
     <a href="#searchModal" class="modal-trigger waves-effect waves-light">
       <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a class="modal-trigger waves-effect waves-light" onclick="switchNightMode()" title="深浅主题切换" >
+      <i id="sum-moon-icon" class="fas fa-moon" style="zoom: 0.7;"></i>
     </a>
   </li>
 </ul>
@@ -333,12 +338,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hexo博客中插入图片</h1>
+                    <h1 class="description center-align post-title">Hexo+matery博客搭建之插入图片</h1>
                 </div>
             </div>
         </div>
@@ -425,10 +430,11 @@
         font-weight: 900;
     }
 
+    /* toc按钮位置调整 */
     #floating-toc-btn {
         position: fixed;
         right: 15px;
-        bottom: 76px;
+        bottom: 75px;     /*原来为75*/
         padding-top: 15px;
         margin-bottom: 0;
         z-index: 998;
@@ -567,7 +573,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2024/06/30/insert-image-in-hexo/">http://example.com/2024/06/30/insert-image-in-hexo/</a>
+                    <a href="https://Achhhe.github.io/2024/06/30/insert-image-in-hexo/">https://Achhhe.github.io/2024/06/30/insert-image-in-hexo/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -662,9 +668,9 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="hexo+matery博客美化">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="hexo+matery博客搭建之主题美化">
                         
-                        <span class="card-title">hexo+matery博客美化</span>
+                        <span class="card-title">hexo+matery博客搭建之主题美化</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -715,9 +721,9 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Hexo+matery博客搭建">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Hexo+matery博客搭建之框架搭建">
                         
-                        <span class="card-title">Hexo+matery博客搭建</span>
+                        <span class="card-title">Hexo+matery博客搭建之框架搭建</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -906,7 +912,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">3.1k</span>&nbsp;字
+                class="white-color">3.7k</span>&nbsp;字
             
             
             
@@ -1111,7 +1117,7 @@ $(function () {
 
     <!-- 回到顶部按钮 -->
 <div id="backTop" class="top-scroll">
-    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!" title="返回顶部">
         <i class="fas fa-arrow-up"></i>
     </a>
 </div>

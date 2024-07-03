@@ -1898,7 +1898,7 @@ footer .copy-right {
     display: none;
     position: fixed;
     right: 15px;
-    bottom: 15px;
+    bottom: 15px;  /*原来为15*/
     padding-top: 15px;
     margin-bottom: 0;
     z-index: 998;
@@ -2302,7 +2302,7 @@ body.DarkMode .skillbar .skill-bar-percent {
     border-radius: 10%;
     position: fixed;
     right: 15px;
-    bottom: 135px;
+    bottom: 15px;
     margin-bottom: 0;
     z-index: 900;
 }

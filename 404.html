@@ -50,11 +50,11 @@
     <script src="/js/cursor.js"></script>
 
     <!-- 白天和黑夜主题 -->
-<div class="sum-moon-box">
-  <a class="btn-floating btn-large waves-effect waves-light" onclick="switchNightMode()" title="切换主题" >
-    <i id="sum-moon-icon" class="fas fa-sun" style="width:48px; height:48px; font-size: 28px;"></i>
+<!-- <div class="sum-moon-box">
+  <a class="btn-floating btn-large waves-effect waves-light" onclick="switchNightMode()" title="深浅主题切换" >
+    <i id="sum-moon-icon" class="fas fa-moon" style="width:48px; height:48px; font-size: 28px;"></i>
   </a>
-</div>
+</div> -->
 
 <script>
   function switchNightMode() {
@@ -163,6 +163,11 @@
   <li>
     <a href="#searchModal" class="modal-trigger waves-effect waves-light">
       <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a class="modal-trigger waves-effect waves-light" onclick="switchNightMode()" title="深浅主题切换" >
+      <i id="sum-moon-icon" class="fas fa-moon" style="zoom: 0.7;"></i>
     </a>
   </li>
 </ul>
@@ -363,7 +368,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">3.1k</span>&nbsp;字
+                class="white-color">3.7k</span>&nbsp;字
             
             
             
@@ -568,7 +573,7 @@ $(function () {
 
     <!-- 回到顶部按钮 -->
 <div id="backTop" class="top-scroll">
-    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!" title="返回顶部">
         <i class="fas fa-arrow-up"></i>
     </a>
 </div>

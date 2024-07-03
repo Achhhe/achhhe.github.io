@@ -50,11 +50,11 @@
     <script src="/js/cursor.js"></script>
 
     <!-- 白天和黑夜主题 -->
-<div class="sum-moon-box">
-  <a class="btn-floating btn-large waves-effect waves-light" onclick="switchNightMode()" title="切换主题" >
-    <i id="sum-moon-icon" class="fas fa-sun" style="width:48px; height:48px; font-size: 28px;"></i>
+<!-- <div class="sum-moon-box">
+  <a class="btn-floating btn-large waves-effect waves-light" onclick="switchNightMode()" title="深浅主题切换" >
+    <i id="sum-moon-icon" class="fas fa-moon" style="width:48px; height:48px; font-size: 28px;"></i>
   </a>
-</div>
+</div> -->
 
 <script>
   function switchNightMode() {
@@ -163,6 +163,11 @@
   <li>
     <a href="#searchModal" class="modal-trigger waves-effect waves-light">
       <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a class="modal-trigger waves-effect waves-light" onclick="switchNightMode()" title="深浅主题切换" >
+      <i id="sum-moon-icon" class="fas fa-moon" style="zoom: 0.7;"></i>
     </a>
   </li>
 </ul>
@@ -372,11 +377,11 @@
                 
                 
                 
-                <a href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" title="博客搭建: 2">
+                <a href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" title="博客搭建: 3">
                     <span class="chip center-align waves-effect waves-light
                              chip-active "
                             style="background-color: #F9EBEA;">博客搭建
-                        <span class="tag-length">2</span>
+                        <span class="tag-length">3</span>
                     </span>
                 </a>
                 
@@ -403,13 +408,71 @@
             
             <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
+                    <a href="/2024/07/03/hexo-github-deploy/">
+                        <div class="card-image tag-image">
+                            
+                            
+                            <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Hexo+matery博客搭建之Github部署">
+                            
+                            <span class="card-title">Hexo+matery博客搭建之Github部署</span>
+                        </div>
+                    </a>
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                SSH密钥链接打开Git Bash，配置邮箱和姓名
+git config --global user.name Achhhe
+git config --global user.email 2238371421@qq.com
+
+生成密钥，将i
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-07-03
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" class="post-category">
+                                    博客搭建
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Hexo/">
+                            <span class="chip bg-color">Hexo</span>
+                        </a>
+                        
+                        <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
+                            <span class="chip bg-color">博客搭建</span>
+                        </a>
+                        
+                        <a href="/tags/Github/">
+                            <span class="chip bg-color">Github</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
                     <a href="/2024/07/01/blog-beautify/">
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="hexo+matery博客美化">
+                            <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="hexo+matery博客搭建之主题美化">
                             
-                            <span class="card-title">hexo+matery博客美化</span>
+                            <span class="card-title">hexo+matery博客搭建之主题美化</span>
                         </div>
                     </a>
                     <div class="card-content article-content">
@@ -467,9 +530,9 @@
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Hexo+matery博客搭建">
+                            <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Hexo+matery博客搭建之框架搭建">
                             
-                            <span class="card-title">Hexo+matery博客搭建</span>
+                            <span class="card-title">Hexo+matery博客搭建之框架搭建</span>
                         </div>
                     </a>
                     <div class="card-content article-content">
@@ -544,7 +607,7 @@ git从阿里镜像下载，直接下载最新的v2.45.2.windows.1/
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">3.1k</span>&nbsp;字
+                class="white-color">3.7k</span>&nbsp;字
             
             
             
@@ -749,7 +812,7 @@ $(function () {
 
     <!-- 回到顶部按钮 -->
 <div id="backTop" class="top-scroll">
-    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!" title="返回顶部">
         <i class="fas fa-arrow-up"></i>
     </a>
 </div>
