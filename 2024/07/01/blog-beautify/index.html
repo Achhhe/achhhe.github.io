@@ -51,7 +51,7 @@
 
     <!-- 白天和黑夜主题 -->
 <!-- <div class="sum-moon-box">
-  <a class="btn-floating btn-large waves-effect waves-light" onclick="switchNightMode()" title="深浅主题切换" >
+  <a class=" waves-effect waves-light" onclick="switchNightMode()" title="深浅主题切换" >
     <i id="sum-moon-icon" class="fas fa-moon" style="width:48px; height:48px; font-size: 28px;"></i>
   </a>
 </div> -->
@@ -103,6 +103,7 @@
             
 
 <a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+
 <ul class="right nav-menu">
   
   <li class="hide-on-med-and-down nav-item">
@@ -167,7 +168,7 @@
   </li>
   <li>
     <a class="modal-trigger waves-effect waves-light" onclick="switchNightMode()" title="深浅主题切换" >
-      <i id="sum-moon-icon" class="fas fa-moon" style="zoom: 0.7;"></i>
+      <i id="sum-moon-icon1" class="fa fa-adjust" style="zoom: 0.7;"></i>
     </a>
   </li>
 </ul>
@@ -499,14 +500,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.7k
+                    2.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    11 分
+                    12 分
                 </div>
                 
 
@@ -724,8 +725,11 @@
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-
-
+<blockquote>
+<p>2024.7.4：新发现个bug，深色主题+<span class="github-emoji"><span>☀</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2600.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>图标情况下，刷新页面可以实现深色主题保持，但是图标会切回初始的<span class="github-emoji"><span>🌙</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f319.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<p>技术有限，不会图标保持操作，偷个懒，选择把图标固定为<code>fa fa-adjust</code>，同时将id改个名字</p>
+<pre class="line-numbers language-ejs" data-language="ejs"><code class="language-ejs"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>sum-moon-icon1<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>fa fa-adjust<span class="token punctuation">"</span></span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">zoom</span><span class="token punctuation">:</span> 0.7<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</blockquote>
 <h4 id="鼠标光标星星拖尾"><a href="#鼠标光标星星拖尾" class="headerlink" title="鼠标光标星星拖尾"></a>鼠标光标星星拖尾</h4><p>在<code>themes/hexo-theme-matery/source/js</code>文件夹下新建<code>cursor.js</code>文件，并将<a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/Yafine/cdn@3.2.5/source/js/cursor.js">传送门</a>内容粘贴进去</p>
 <p>在<code>themes/hexo-theme-matery/layout/layout.ejs</code>内新增</p>
 <pre class="line-numbers language-ejs" data-language="ejs"><code class="language-ejs"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/js/cursor.js<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
@@ -733,7 +737,7 @@
 <h4 id="樱花特效"><a href="#樱花特效" class="headerlink" title="樱花特效"></a>樱花特效</h4><p>Todo</p>
 <h4 id="鼠标点击特效"><a href="#鼠标点击特效" class="headerlink" title="鼠标点击特效"></a>鼠标点击特效</h4><p>Todo</p>
 <h4 id="修改页脚"><a href="#修改页脚" class="headerlink" title="修改页脚"></a>修改页脚</h4><p>修改的地方<code>themes/hexo-theme-matery/layout/_partial/footer.ejs</code>文件中，包括站点、使用的主题、访问量等</p>
-<h3 id="修改网站背景"><a href="#修改网站背景" class="headerlink" title="修改网站背景"></a>修改网站背景</h3><p>修改主题配置文件对应参数，<code>themes/hexo-theme-matery/_config.yml</code></p>
+<h4 id="修改网站背景"><a href="#修改网站背景" class="headerlink" title="修改网站背景"></a>修改网站背景</h4><p>修改主题配置文件对应参数，<code>themes/hexo-theme-matery/_config.yml</code></p>
 <pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># 网站背景图</span>
 <span class="token key atrule">background</span><span class="token punctuation">:</span>
   <span class="token key atrule">enable</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
@@ -901,6 +905,9 @@
 <pre class="line-numbers language-ejs" data-language="ejs"><code class="language-ejs">$('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>在 <code>/source/medias/featureimages</code> 文件夹中默认有 24 张特色图片，你可以再增加或者减少，并需要在 <code>_config.yml</code> 做同步修改。</p>
+<blockquote>
+<p>banner图太大可能显示红色背景，<a target="_blank" rel="noopener" href="https://github.com/blinkfox/hexo-theme-matery/issues/528">传送门</a></p>
+</blockquote>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/dm900work/article/details/121332092">行号显示</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.dreamruins.com/tutorials/1121281946">暗黑主题-Ruins</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.17lai.site/posts/4a2050e2/">夜法之书</a></p>
@@ -1273,7 +1280,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">3.7k</span>&nbsp;字
+                class="white-color">3.9k</span>&nbsp;字
             
             
             
