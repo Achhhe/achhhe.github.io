@@ -504,7 +504,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    173
+                    191
                 </div>
                 
 
@@ -539,14 +539,15 @@
 <p>测试是否免密链接成功，可以多试几次</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> <span class="token parameter variable">-T</span> git@github.com<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h3 id="Github部署"><a href="#Github部署" class="headerlink" title="Github部署"></a>Github部署</h3><p>修改站点配置文件<code>_config.yml</code></p>
+<h3 id="Github部署"><a href="#Github部署" class="headerlink" title="Github部署"></a>Github部署</h3><p>github账户新建一个<code>index.html</code>页面</p>
+<p>修改站点配置文件<code>_config.yml</code></p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">url: https://Achhhe.github.io/
 
 deploy:
   type: <span class="token function">git</span>
   repo: https://github.com/Achhhe/Achhhe.github.io
   <span class="token comment"># example, https://github.com/hexojs/hexojs.github.io</span>
-  branch: master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  branch: master <span class="token comment">#要与index.html相同分支s</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>安装部署插件</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 1</span>
