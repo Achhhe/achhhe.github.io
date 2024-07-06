@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hexo+matery博客搭建之框架搭建, hexo,算法，计算机视觉，人工智能">
+    <meta name="keywords" content="Pytorch中RNN的内部实现, hexo,算法，计算机视觉，人工智能">
     <meta name="description" content="记录学习之旅，巩固自我及启发后人">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Hexo+matery博客搭建之框架搭建 | HeBlog</title>
+    <title>Pytorch中RNN的内部实现 | HeBlog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -339,12 +339,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/68.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hexo+matery博客搭建之框架搭建</h1>
+                    <h1 class="description center-align post-title">Pytorch中RNN的内部实现</h1>
                 </div>
             </div>
         </div>
@@ -462,12 +462,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Hexo/">
-                                <span class="chip bg-color">Hexo</span>
+                            <a href="/tags/Pytorch/">
+                                <span class="chip bg-color">Pytorch</span>
                             </a>
                         
-                            <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
-                                <span class="chip bg-color">博客搭建</span>
+                            <a href="/tags/RNN/">
+                                <span class="chip bg-color">RNN</span>
                             </a>
                         
                     </div>
@@ -478,8 +478,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" class="post-category">
-                                博客搭建
+                            <a href="/categories/Pytorch/" class="post-category">
+                                Pytorch
                             </a>
                         
                     </div>
@@ -491,7 +491,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-06-29
+                    2024-07-06
                 </div>
                 
 
@@ -500,14 +500,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    664
+                    569
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    3 分
                 </div>
                 
 
@@ -525,102 +525,101 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <div class="markmap-container" style="height:400px">
-  <svg data="{&quot;t&quot;:&quot;root&quot;,&quot;d&quot;:0,&quot;v&quot;:&quot;&quot;,&quot;c&quot;:[{&quot;t&quot;:&quot;list_item&quot;,&quot;d&quot;:2,&quot;p&quot;:{&quot;lines&quot;:[1,2]},&quot;v&quot;:&quot;下载node.js和git&quot;},{&quot;t&quot;:&quot;list_item&quot;,&quot;d&quot;:2,&quot;p&quot;:{&quot;lines&quot;:[2,3]},&quot;v&quot;:&quot;hexo搭建博客&quot;,&quot;c&quot;:[{&quot;t&quot;:&quot;list_item&quot;,&quot;d&quot;:4,&quot;p&quot;:{&quot;lines&quot;:[3,4]},&quot;v&quot;:&quot;下载node.js和git&quot;},{&quot;t&quot;:&quot;list_item&quot;,&quot;d&quot;:4,&quot;p&quot;:{&quot;lines&quot;:[4,5]},&quot;v&quot;:&quot;搭建博客&quot;,&quot;c&quot;:[{&quot;t&quot;:&quot;list_item&quot;,&quot;d&quot;:6,&quot;p&quot;:{&quot;lines&quot;:[5,6]},&quot;v&quot;:&quot;更换主题，新建post，新建page&quot;}]}]}],&quot;p&quot;:{}}"></svg>
-</div>
+                <blockquote>
+<p>背景：某分类任务用到了两层（单向）RNN，训练时基于Pytorch中nn.RNN()，C化部署时则需要自己手动实现</p>
+</blockquote>
+<h3 id="RNN"><a href="#RNN" class="headerlink" title="RNN"></a>RNN</h3><p>Pytorch中<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.RNN.html">RNN</a>迭代公式如下</p>
+<img src="/2024/07/06/240706-pytorchrnn-implement/rnn.png" class="">
+<p>$x_t$为输入，$h_{t-1}$为隐变量</p>
+<p>可以看出$h_t$其实就是$x_t$和$h_{t-1}$分别经过线性层，因此可以用两个nn.Linear()实现</p>
+<p>以2层单向RNN为例，基于pytorch的rnn分类器以及自我实现如下</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">RnnClassifier</span><span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Module<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> in_c<span class="token punctuation">,</span> hid_c<span class="token punctuation">,</span> n_layer <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>rnn <span class="token operator">=</span> nn<span class="token punctuation">.</span>RNN<span class="token punctuation">(</span>input_size <span class="token operator">=</span> in_c<span class="token punctuation">,</span> hidden_size <span class="token operator">=</span> hid_c<span class="token punctuation">,</span> num_layer <span class="token operator">=</span> n_layer<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>classifier <span class="token operator">=</span> nn<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span>
+            nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span>hid_c<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            nn<span class="token punctuation">.</span>Sigmoid<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">)</span>
+    <span class="token keyword">def</span> <span class="token function">forword</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">,</span> hn <span class="token operator">=</span> <span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">''' x: (T,B,in_c)
+        	hn: (2,B,hid_c)
+        '''</span> 
+        x<span class="token punctuation">,</span> hn <span class="token operator">=</span> self<span class="token punctuation">.</span>rnn<span class="token punctuation">(</span>x<span class="token punctuation">,</span> hn<span class="token punctuation">)</span>
+        x <span class="token operator">=</span> self<span class="token punctuation">.</span>classifier<span class="token punctuation">(</span>x<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> x<span class="token punctuation">,</span> hn<span class="token punctuation">.</span>detach<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
+<span class="token keyword">class</span> <span class="token class-name">MyRnnClassifier</span><span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Module<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> in_c<span class="token punctuation">,</span> hid_c<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>hid_c <span class="token operator">=</span> hid_c
+        self<span class="token punctuation">.</span>Wih0 <span class="token operator">=</span> nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span>in_c<span class="token punctuation">,</span> hid_c<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>Whh0 <span class="token operator">=</span> nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span>hid_c<span class="token punctuation">,</span> hid_c<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>Wih1 <span class="token operator">=</span> nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span>hid_c<span class="token punctuation">,</span> hid_c<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>Whh1 <span class="token operator">=</span> nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span>hid_c<span class="token punctuation">,</span> hid_c<span class="token punctuation">)</span>
+
+        self<span class="token punctuation">.</span>classifier <span class="token operator">=</span> nn<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span>
+            nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span>hid_c<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            nn<span class="token punctuation">.</span>Sigmoid<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>tanh <span class="token operator">=</span> nn<span class="token punctuation">.</span>Tanh<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">forword</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">,</span> hn <span class="token operator">=</span> <span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> x<span class="token punctuation">.</span>dim<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">3</span><span class="token punctuation">:</span>
+            x <span class="token operator">=</span> x<span class="token punctuation">.</span>squeeze<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> hn <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+            hn <span class="token operator">=</span> torch<span class="token punctuation">.</span>zeros<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> x<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>hid_c<span class="token punctuation">,</span> dtype <span class="token operator">=</span> x<span class="token punctuation">.</span>dtype<span class="token punctuation">,</span> device <span class="token operator">=</span> x<span class="token punctuation">.</span>device<span class="token punctuation">)</span>
+        <span class="token comment"># 2-layer rnn</span>
+        hn0 <span class="token operator">=</span> self<span class="token punctuation">.</span>tanh<span class="token punctuation">(</span>self<span class="token punctuation">.</span>Wih0<span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token operator">+</span> self<span class="token punctuation">.</span>Whh0<span class="token punctuation">(</span>hn<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        hn1 <span class="token operator">=</span> self<span class="token punctuation">.</span>tanh<span class="token punctuation">(</span>self<span class="token punctuation">.</span>Wih1<span class="token punctuation">(</span>hn0<span class="token punctuation">)</span> <span class="token operator">+</span> self<span class="token punctuation">.</span>Whh1<span class="token punctuation">(</span>hn<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        x <span class="token operator">=</span> self<span class="token punctuation">.</span>classifier<span class="token punctuation">(</span>hn1<span class="token punctuation">)</span>
+        hn <span class="token operator">=</span> torch<span class="token punctuation">.</span>stack<span class="token punctuation">(</span><span class="token punctuation">[</span>hn0<span class="token punctuation">,</span> hn1<span class="token punctuation">]</span><span class="token punctuation">,</span> dim <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">.</span>detach<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> x<span class="token punctuation">,</span> hn<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <blockquote>
-<p>脑图可拖动和放缩</p>
+<p>基于nn.RNN()进行模型训练，完成后将pth文件中的权重字典转成基于nn.Linear()的自我实现形式，可以验证输出严格对齐</p>
 </blockquote>
-<h2 id="下载node-js和git"><a href="#下载node-js和git" class="headerlink" title="下载node.js和git"></a>下载node.js和git</h2><p>node.js直接<a target="_blank" rel="noopener" href="https://nodejs.org/zh-cn">官网</a>下载</p>
-<p>git从<a target="_blank" rel="noopener" href="https://registry.npmmirror.com/binary.html?path=git-for-windows/">阿里镜像</a>下载，直接下载最新的<a target="_blank" rel="noopener" href="https://registry.npmmirror.com/binary.html?path=git-for-windows/v2.45.2.windows.1/">v2.45.2.windows.1/</a></p>
-<p>直接默认安装配置即可，环境变量会默认添加</p>
-<h2 id="基于hexo框架搭建博客"><a href="#基于hexo框架搭建博客" class="headerlink" title="基于hexo框架搭建博客"></a>基于hexo框架搭建博客</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> hexo-cli <span class="token parameter variable">-g</span>  <span class="token comment"># 安装hexo框架</span>
-<span class="token builtin class-name">cd</span> xxx                   <span class="token comment"># 切换至自定义博客保存目录</span>
-hexo init blog           <span class="token comment"># 生成并初始化博客至blog目录</span>
-<span class="token builtin class-name">cd</span> blog
-hexo s                   <span class="token comment"># hexo server，启动本地博客服务</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h3><p>与RNN类似，<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.LSTM.html#torch.nn.LSTM">LSTM</a>也可以自我实现，公式如下</p>
+<img src="/2024/07/06/240706-pytorchrnn-implement/lstm.png" class="">
+<p>LSTM比RNN多几个gate，因此自我实现需要用到8个nn.Linear()</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">MyLstmClassifier</span><span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Module<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> in_c<span class="token punctuation">,</span> hid_c<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>hid_c <span class="token operator">=</span> hid_c
+        self<span class="token punctuation">.</span>Wii <span class="token operator">=</span> nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span>in_c<span class="token punctuation">,</span> hid_c<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>Wif <span class="token operator">=</span> nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span>hid_c<span class="token punctuation">,</span> hid_c<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>Wig <span class="token operator">=</span> nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span>hid_c<span class="token punctuation">,</span> hid_c<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>Wio <span class="token operator">=</span> nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span>hid_c<span class="token punctuation">,</span> hid_c<span class="token punctuation">)</span>
 
-<p>本地浏览器<code>http://localhost:4000/</code>可以看到如下</p>
-<p><img src="/images/my-first-post-1.png"></p>
-<h3 id="必备操作"><a href="#必备操作" class="headerlink" title="必备操作"></a>必备操作</h3><h4 id="Create-Your-First-Post"><a href="#Create-Your-First-Post" class="headerlink" title="Create Your First Post"></a>Create Your First Post</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">hexo new <span class="token string">'my first post'</span>     <span class="token comment"># 创建新post</span>
-hexo s                       <span class="token comment"># 启动server</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+        self<span class="token punctuation">.</span>Whi <span class="token operator">=</span> nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span>hid_c<span class="token punctuation">,</span> hid_c<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>Whf <span class="token operator">=</span> nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span>hid_c<span class="token punctuation">,</span> hid_c<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>Whg <span class="token operator">=</span> nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span>hid_c<span class="token punctuation">,</span> hid_c<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>Who <span class="token operator">=</span> nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span>hid_c<span class="token punctuation">,</span> hid_c<span class="token punctuation">)</span>
 
-<p>上述指令将创建文件至<code>\blog\source\_posts\my-first-post.md</code>，可基于<code>markdown</code>编写内容</p>
-<p><strong>Front-matter</strong>简单示例</p>
-<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown">title: My First Post
-date: 2024-06-29 13:47:03
-mathjax: true   #打开数据公式局部开关
-categories: 博客搭建
-tags:
-  <span class="token list punctuation">-</span> Hexo
-  <span class="token list punctuation">-</span> 博客搭建
- <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        self<span class="token punctuation">.</span>classifier <span class="token operator">=</span> nn<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span>
+            nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span>hid_c<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            nn<span class="token punctuation">.</span>Sigmoid<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>sigmoid <span class="token operator">=</span> nn<span class="token punctuation">.</span>Sigmoid<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>tanh <span class="token operator">=</span> nn<span class="token punctuation">.</span>Tanh<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-<p><strong>Front-matter</strong>最全示例</p>
-<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown"><span class="token front-matter-block"><span class="token punctuation">---</span>
-<span class="token front-matter yaml language-yaml"><span class="token key atrule">title</span><span class="token punctuation">:</span> xxx
-<span class="token key atrule">date</span><span class="token punctuation">:</span> <span class="token datetime number">2018-09-07 09:25:00</span>
-<span class="token key atrule">author</span><span class="token punctuation">:</span> Achhhe
-<span class="token key atrule">img</span><span class="token punctuation">:</span> /source/images/xxx.jpg
-<span class="token key atrule">top</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
-<span class="token key atrule">hide</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
-<span class="token key atrule">cover</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
-<span class="token key atrule">coverImg</span><span class="token punctuation">:</span> /images/1.jpg
-<span class="token key atrule">password</span><span class="token punctuation">:</span> 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92
-<span class="token key atrule">toc</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
-<span class="token key atrule">mathjax</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
-<span class="token key atrule">summary</span><span class="token punctuation">:</span> xxx
-<span class="token key atrule">categories</span><span class="token punctuation">:</span> xxx
-<span class="token key atrule">tags</span><span class="token punctuation">:</span>
-  <span class="token punctuation">-</span> xxx
-  <span class="token punctuation">-</span> yyy</span>
-<span class="token punctuation">---</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token keyword">def</span> <span class="token function">forword</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">,</span> state <span class="token operator">=</span> <span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> x<span class="token punctuation">.</span>dim<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">3</span><span class="token punctuation">:</span>
+            x <span class="token operator">=</span> x<span class="token punctuation">.</span>squeeze<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> state <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+            ht <span class="token operator">=</span> torch<span class="token punctuation">.</span>zeros<span class="token punctuation">(</span>x<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>hid_c<span class="token punctuation">,</span> dtype <span class="token operator">=</span> x<span class="token punctuation">.</span>dtype<span class="token punctuation">,</span> device <span class="token operator">=</span> x<span class="token punctuation">.</span>device<span class="token punctuation">)</span>
+            ct <span class="token operator">=</span> torch<span class="token punctuation">.</span>zeros<span class="token punctuation">(</span>x<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>hid_c<span class="token punctuation">,</span> dtype <span class="token operator">=</span> x<span class="token punctuation">.</span>dtype<span class="token punctuation">,</span> device <span class="token operator">=</span> x<span class="token punctuation">.</span>device<span class="token punctuation">)</span>
+            state <span class="token operator">=</span> <span class="token punctuation">(</span>ht<span class="token punctuation">,</span> ct<span class="token punctuation">)</span>
+        ht<span class="token punctuation">,</span> ct <span class="token operator">=</span> state
+        <span class="token comment"># lstm</span>
+        it <span class="token operator">=</span> self<span class="token punctuation">.</span>sigmoid<span class="token punctuation">(</span>self<span class="token punctuation">.</span>Wii<span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token operator">+</span> self<span class="token punctuation">.</span>Whi<span class="token punctuation">(</span>ht<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        ft <span class="token operator">=</span> self<span class="token punctuation">.</span>sigmoid<span class="token punctuation">(</span>self<span class="token punctuation">.</span>Wif<span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token operator">+</span> self<span class="token punctuation">.</span>Whf<span class="token punctuation">(</span>ht<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        gt <span class="token operator">=</span> self<span class="token punctuation">.</span>tanh<span class="token punctuation">(</span>self<span class="token punctuation">.</span>Wig<span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token operator">+</span> self<span class="token punctuation">.</span>Whg<span class="token punctuation">(</span>ht<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        ot <span class="token operator">=</span> self<span class="token punctuation">.</span>sigmoid<span class="token punctuation">(</span>self<span class="token punctuation">.</span>Wio<span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token operator">+</span> self<span class="token punctuation">.</span>Who<span class="token punctuation">(</span>ht<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        ct <span class="token operator">=</span> ft <span class="token operator">*</span> ct <span class="token operator">+</span> it <span class="token operator">*</span> gt
+        ht <span class="token operator">=</span> ot <span class="token operator">*</span> self<span class="token punctuation">.</span>tanh<span class="token punctuation">(</span>ct<span class="token punctuation">)</span>
+        x <span class="token operator">=</span> self<span class="token punctuation">.</span>classifier<span class="token punctuation">(</span>hn<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> x<span class="token punctuation">,</span> <span class="token punctuation">(</span>ht<span class="token punctuation">.</span>detach<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> ct<span class="token punctuation">.</span>detach<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h4><p>去<a target="_blank" rel="noopener" href="https://blinkfox.github.io/">闪烁之狐</a>主页下载稳定版主题文件<code>hexo-theme-matery-master.zip</code>，解压至<code>blog/theme</code></p>
-<p>修改hexo根目录下<code>_config.yaml</code>配置文件中<code>theme</code>值为<code>theme: hexo-theme-matery</code></p>
-<p>注意：主题压缩文件直接解压的文件夹名称为<code>hexo-theme-matery-master</code>，需要修改成<code>hexo-theme-matery</code>（即<code>blog/theme</code>文件夹下主题文件夹名称应和<code>_config.yaml</code>的<code>theme</code>值相同）</p>
-<p>最终效果如下</p>
-<p><img src="/images/my-first-post-2.png"></p>
-<p>具体修改见下文</p>
-<h4 id="新建分类-categories-页"><a href="#新建分类-categories-页" class="headerlink" title="新建分类 categories 页"></a>新建分类 categories 页</h4><p><code>categories</code> 页是用来展示所有分类的页面。初始模板 <code>source</code> 目录下还没有 <code>categories/index.md</code> 文件，需要新建一个，命令如下：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">hexo new page <span class="token string">"categories"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>编辑你刚刚新建的页面文件 <code>/source/categories/index.md</code>，至少需要以下内容：</p>
-<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token punctuation">---</span>
-<span class="token key atrule">title</span><span class="token punctuation">:</span> categories
-<span class="token key atrule">date</span><span class="token punctuation">:</span> <span class="token datetime number">2018-09-30 17:25:30</span>
-<span class="token key atrule">type</span><span class="token punctuation">:</span> <span class="token string">"categories"</span>
-<span class="token key atrule">layout</span><span class="token punctuation">:</span> <span class="token string">"categories"</span>
-<span class="token punctuation">---</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="新建标签-tags-页"><a href="#新建标签-tags-页" class="headerlink" title="新建标签 tags 页"></a>新建标签 tags 页</h4><p><code>tags</code> 页是用来展示所有标签的页面。初始博客 <code>source</code> 目录下还没有 <code>tags/index.md</code> 文件，需要新建一个，命令如下：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">hexo new page <span class="token string">"tags"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>编辑你刚刚新建的页面文件 <code>/source/tags/index.md</code>，至少需要以下内容：</p>
-<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token punctuation">---</span>
-<span class="token key atrule">title</span><span class="token punctuation">:</span> tags
-<span class="token key atrule">date</span><span class="token punctuation">:</span> <span class="token datetime number">2018-09-30 18:23:38</span>
-<span class="token key atrule">type</span><span class="token punctuation">:</span> <span class="token string">"tags"</span>
-<span class="token key atrule">layout</span><span class="token punctuation">:</span> <span class="token string">"tags"</span>
-<span class="token punctuation">---</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="新建关于我-about-页"><a href="#新建关于我-about-页" class="headerlink" title="新建关于我 about 页"></a>新建关于我 about 页</h4><p><code>about</code> 页是用来展示<strong>关于我和我的博客</strong>信息的页面。初始博客 <code>source</code> 目录下还没有 <code>about/index.md</code> 文件，那么你就需要新建一个，命令如下：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">hexo new page <span class="token string">"about"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>编辑你刚刚新建的页面文件 <code>/source/about/index.md</code>，至少需要以下内容：</p>
-<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token punctuation">---</span>
-<span class="token key atrule">title</span><span class="token punctuation">:</span> about
-<span class="token key atrule">date</span><span class="token punctuation">:</span> <span class="token datetime number">2018-09-30 17:25:30</span>
-<span class="token key atrule">type</span><span class="token punctuation">:</span> <span class="token string">"about"</span>
-<span class="token key atrule">layout</span><span class="token punctuation">:</span> <span class="token string">"about"</span>
-<span class="token punctuation">---</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://github.com/blinkfox/hexo-theme-matery/blob/develop/README_CN.md">matery模板安装教程</a></p>
-<p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">hexo中文文档</a></p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.RNN.html">官方RNN文档</a></p>
+<p><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.LSTM.html#torch.nn.LSTM">官方LSTM文档</a></p>
 <script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">
                 
             </div>
@@ -635,12 +634,12 @@ tags:
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Hexo/">
-                                    <span class="chip bg-color">Hexo</span>
+                                <a href="/tags/Pytorch/">
+                                    <span class="chip bg-color">Pytorch</span>
                                 </a>
                             
-                                <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
-                                    <span class="chip bg-color">博客搭建</span>
+                                <a href="/tags/RNN/">
+                                    <span class="chip bg-color">RNN</span>
                                 </a>
                             
                         </div>
@@ -684,17 +683,18 @@ tags:
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2024/06/30/insert-image-in-hexo/">
+                <a href="/2024/07/06/240706-pytorchrnn-implement/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="Hexo+matery博客搭建之插入图片">
+                        <img src="/medias/featureimages/68.jpg" class="responsive-img" alt="Pytorch中RNN的内部实现">
                         
-                        <span class="card-title">Hexo+matery博客搭建之插入图片</span>
+                        <span class="card-title">Pytorch中RNN的内部实现</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -704,9 +704,63 @@ tags:
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-06-30
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-07-06
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Pytorch/" class="post-category">
+                                    Pytorch
+                                </a>
+                            
+                            
                         </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Pytorch/">
+                        <span class="chip bg-color">Pytorch</span>
+                    </a>
+                    
+                    <a href="/tags/RNN/">
+                        <span class="chip bg-color">RNN</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2024/07/06/240706-insert-pdf-in-hexo/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/27.jpg" class="responsive-img" alt="Hexo+matery博客搭建之插入PDF">
+                        
+                        <span class="card-title">Hexo+matery博客搭建之插入PDF</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-07-06
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -719,60 +773,6 @@ tags:
                         </span>
                     </div>
                 </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Hexo/">
-                        <span class="chip bg-color">Hexo</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
-                        <span class="chip bg-color">博客搭建</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
-            </div>
-            <div class="card">
-                <a href="/2024/06/29/my-first-post/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="Hexo+matery博客搭建之框架搭建">
-                        
-                        <span class="card-title">Hexo+matery博客搭建之框架搭建</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-06-29
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" class="post-category">
-                                    博客搭建
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -1199,6 +1199,6 @@ $(function () {
 
 }
 
-<script src="/js/markmap.js"></script></body>
+</body>
 
 </html>
