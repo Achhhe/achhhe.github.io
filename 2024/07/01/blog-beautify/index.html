@@ -78,7 +78,7 @@
   <div id="stars2"></div>
   <div id="stars3"></div>  
 </div>
-    <script>
+    <!-- <script>
         /* 模式判断 */
         if (localStorage.getItem('isDark') === '1') {
             document.body.classList.add('DarkMode');
@@ -87,7 +87,7 @@
             document.body.classList.remove('DarkMode');
             $('#sum-moon-icon').removeleClass("fa-sun").addClass('fa-moon')
         }
-    </script>
+    </script> -->
 
     <header class="navbar-fixed">
     <nav id="headNav" class="bg-color nav-transparent">
@@ -168,7 +168,7 @@
   </li>
   <li>
     <a class="modal-trigger waves-effect waves-light" onclick="switchNightMode()" title="深浅主题切换" >
-      <i id="sum-moon-icon1" class="fa fa-adjust" style="zoom: 0.7;"></i>
+      <i id="sum-moon-icon" class="fa fa-moon" style="zoom: 0.7;"></i>
     </a>
   </li>
 </ul>
@@ -500,7 +500,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.8k
+                    2.9k
                 </div>
                 
 
@@ -730,6 +730,19 @@
 <p>技术有限，不会图标保持操作，偷个懒，选择把图标固定为<code>fa fa-adjust</code>，同时将id改个名字</p>
 <pre class="line-numbers language-ejs" data-language="ejs"><code class="language-ejs"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>sum-moon-icon1<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>fa fa-adjust<span class="token punctuation">"</span></span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">zoom</span><span class="token punctuation">:</span> 0.7<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </blockquote>
+<blockquote>
+<p>20247.6：学习<a target="_blank" rel="noopener" href="https://immortalqx.github.io/">LQX</a>博客发现，将黑夜模式判断放在<code>themes\hexo-theme-matery\source\js\matery.js</code>文件可以避免页面刷新时图标回到<span class="github-emoji"><span>🌙</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f319.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 黑夜模式判断</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>localStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">'isDark'</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token string">'1'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>classList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">'DarkMode'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#sum-moon-icon'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addClass</span><span class="token punctuation">(</span><span class="token string">"fa-sun"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">removeClass</span><span class="token punctuation">(</span><span class="token string">'fa-moon'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>classList<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token string">'DarkMode'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#sum-moon-icon'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">removeleClass</span><span class="token punctuation">(</span><span class="token string">"fa-sun"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addClass</span><span class="token punctuation">(</span><span class="token string">'fa-moon'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>原<code>themes\hexo-theme-matery\layout\layout.ejs</code>中模式判断可以注释掉</p>
+</blockquote>
 <h4 id="鼠标光标星星拖尾"><a href="#鼠标光标星星拖尾" class="headerlink" title="鼠标光标星星拖尾"></a>鼠标光标星星拖尾</h4><p>在<code>themes/hexo-theme-matery/source/js</code>文件夹下新建<code>cursor.js</code>文件，并将<a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/Yafine/cdn@3.2.5/source/js/cursor.js">传送门</a>内容粘贴进去</p>
 <p>在<code>themes/hexo-theme-matery/layout/layout.ejs</code>内新增</p>
 <pre class="line-numbers language-ejs" data-language="ejs"><code class="language-ejs"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/js/cursor.js<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
@@ -912,6 +925,7 @@
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/dm900work/article/details/121332092">行号显示</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.dreamruins.com/tutorials/1121281946">暗黑主题-Ruins</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.17lai.site/posts/4a2050e2/">夜法之书</a></p>
+<p><a target="_blank" rel="noopener" href="https://immortalqx.github.io/">LQX</a></p>
 <script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">
                 
             </div>
@@ -1231,7 +1245,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">4k</span>&nbsp;字
+                class="white-color">4.2k</span>&nbsp;字
             
             
             
