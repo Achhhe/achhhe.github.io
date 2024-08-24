@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hexo+matery博客搭建之插入图片, hexo,算法，计算机视觉，人工智能">
+    <meta name="keywords" content="ToyDL之扩散模型DDPM, hexo,算法，计算机视觉，人工智能">
     <meta name="description" content="记录学习之旅，巩固自我及启发后人">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Hexo+matery博客搭建之插入图片 | HeBlog</title>
+    <title>ToyDL之扩散模型DDPM | HeBlog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -339,12 +339,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/66.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hexo+matery博客搭建之插入图片</h1>
+                    <h1 class="description center-align post-title">ToyDL之扩散模型DDPM</h1>
                 </div>
             </div>
         </div>
@@ -462,12 +462,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Hexo/">
-                                <span class="chip bg-color">Hexo</span>
+                            <a href="/tags/Pytorch/">
+                                <span class="chip bg-color">Pytorch</span>
                             </a>
                         
-                            <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
-                                <span class="chip bg-color">博客搭建</span>
+                            <a href="/tags/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/">
+                                <span class="chip bg-color">扩散模型</span>
                             </a>
                         
                     </div>
@@ -478,8 +478,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Hexo/" class="post-category">
-                                Hexo
+                            <a href="/categories/ToyDL/" class="post-category">
+                                ToyDL
                             </a>
                         
                     </div>
@@ -491,7 +491,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-06-30
+                    2024-08-24
                 </div>
                 
 
@@ -500,14 +500,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    256
+                    649
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 
@@ -525,29 +525,87 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <div class="markmap-container" style="height:400px">
-  <svg data="{&quot;t&quot;:&quot;root&quot;,&quot;d&quot;:0,&quot;v&quot;:&quot;&quot;,&quot;c&quot;:[{&quot;t&quot;:&quot;list_item&quot;,&quot;d&quot;:2,&quot;p&quot;:{&quot;lines&quot;:[1,2]},&quot;v&quot;:&quot;全局资源文件夹&quot;,&quot;c&quot;:[{&quot;t&quot;:&quot;list_item&quot;,&quot;d&quot;:4,&quot;p&quot;:{&quot;lines&quot;:[2,3]},&quot;v&quot;:&quot;新建<code>images</code>文件夹&quot;},{&quot;t&quot;:&quot;list_item&quot;,&quot;d&quot;:4,&quot;p&quot;:{&quot;lines&quot;:[3,4]},&quot;v&quot;:&quot;<code>![](/images/my-first-post-2.png)</code>访问&quot;},{&quot;t&quot;:&quot;list_item&quot;,&quot;d&quot;:4,&quot;p&quot;:{&quot;lines&quot;:[4,5]},&quot;v&quot;:&quot;最简单，方便快捷，但文章较多时资源混乱&quot;}]},{&quot;t&quot;:&quot;list_item&quot;,&quot;d&quot;:2,&quot;p&quot;:{&quot;lines&quot;:[5,6]},&quot;v&quot;:&quot;文章资源文件夹&quot;,&quot;c&quot;:[{&quot;t&quot;:&quot;list_item&quot;,&quot;d&quot;:4,&quot;p&quot;:{&quot;lines&quot;:[6,7]},&quot;v&quot;:&quot;<code>post_asset_folder</code>值为<code>true</code>&quot;},{&quot;t&quot;:&quot;list_item&quot;,&quot;d&quot;:4,&quot;p&quot;:{&quot;lines&quot;:[7,8]},&quot;v&quot;:&quot;通过<code>asset_img</code>相对路径访问&quot;},{&quot;t&quot;:&quot;list_item&quot;,&quot;d&quot;:4,&quot;p&quot;:{&quot;lines&quot;:[8,9]},&quot;v&quot;:&quot;各文章资源独立，规范化管理&quot;}]}],&quot;p&quot;:{}}"></svg>
-</div>
+                <blockquote>
+<p>背景：某生成任务用到了DDPM，为了更直观理解其前向和反向过程，写个简易的Toy工程</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/Achhhe/ToyDL/tree/main/240824-toy-diffusion">Github地址</a></p>
+</blockquote>
+<h2 id="扩散模型简介"><a href="#扩散模型简介" class="headerlink" title="扩散模型简介"></a>扩散模型简介</h2><p>由两条参数化<strong>马尔可夫链</strong>组成。 前向过程（又称扩散过程）时逐渐向数据中添加噪声，直到数据完全退化为噪声。反向过程则逐步去噪，最终达到数据生成的目的</p>
+<p>下两图是毕设中的，条件扩散模型</p>
+<img src="/2024/08/24/240824-toy-diffusion/chp4-diffusion-model-intro2.png" class="">
 
+<img src="/2024/08/24/240824-toy-diffusion/chp4-ieddpm-framework-visio.png" class="">
+
+<h2 id="前向过程"><a href="#前向过程" class="headerlink" title="前向过程"></a>前向过程</h2><p>前向为加噪过程，核心公式如下</p>
+<img src="/2024/08/24/240824-toy-diffusion/core-eq-diffusion.png" class="">
+
+<p>其中$\bar{\alpha}_t=\textstyle \prod_1^t\alpha_t$</p>
+<p>$\alpha_{1:T}\triangleq(\alpha_1,\alpha2,\dots,\alpha_T)$是一组超参数，用以控制每次迭代的噪声方差，并且满足条件$0 &lt; \alpha_t &lt; 1$以确保$t \rightarrow \infty$时方差有界</p>
+<p>对应核心代码</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">sqrt_alphas_cumprod <span class="token operator">=</span> torch<span class="token punctuation">.</span>sqrt<span class="token punctuation">(</span>alphas_cumprod<span class="token punctuation">)</span>
+sqrt_one_minus_alphas_cumprod <span class="token operator">=</span> torch<span class="token punctuation">.</span>sqrt<span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">-</span> alphas_cumprod <span class="token operator">**</span> <span class="token number">2</span><span class="token punctuation">)</span>
+
+<span class="token comment"># sample t and noise</span>
+t <span class="token operator">=</span> torch<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> n_steps<span class="token punctuation">,</span> <span class="token punctuation">(</span>b<span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span>
+z <span class="token operator">=</span> torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span>b<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span>
+
+<span class="token comment"># forward sample xt</span>
+xt <span class="token operator">=</span> sqrt_alphas_cumprod<span class="token punctuation">.</span>gather<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> t<span class="token punctuation">)</span><span class="token punctuation">.</span>view<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">*</span> x <span class="token operator">+</span> sqrt_one_minus_alphas_cumprod<span class="token punctuation">.</span>gather<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> t<span class="token punctuation">)</span><span class="token punctuation">.</span>view<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">*</span> z
+
+<span class="token comment"># denoise</span>
+z_pred <span class="token operator">=</span> denoiser<span class="token punctuation">(</span>xt<span class="token punctuation">,</span> t<span class="token punctuation">)</span>
+
+loss <span class="token operator">=</span> F<span class="token punctuation">.</span>mse_loss<span class="token punctuation">(</span>z<span class="token punctuation">,</span> z_pred<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="反向过程"><a href="#反向过程" class="headerlink" title="反向过程"></a>反向过程</h2><p>反向采样过程的核心公式如下</p>
+<img src="/2024/08/24/240824-toy-diffusion/core-eq-final.png" class="">
+
+<p>对应核心代码</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">alphas_cumprod_prev <span class="token operator">=</span> torch<span class="token punctuation">.</span>cat<span class="token punctuation">(</span><span class="token punctuation">[</span>torch<span class="token punctuation">.</span>ones<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span><span class="token punctuation">,</span> alphas_cumprod<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+posterior_variance <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1.</span> <span class="token operator">-</span> alphas<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token punctuation">(</span><span class="token number">1.</span> <span class="token operator">-</span> alphas_cumprod_prev<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token number">1.</span> <span class="token operator">-</span> alphas_cumprod<span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">sample_ddpm</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> t<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    t <span class="token operator">=</span> torch<span class="token punctuation">.</span>tensor<span class="token punctuation">(</span><span class="token punctuation">[</span>t<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span>
+    at <span class="token operator">=</span> alphas<span class="token punctuation">.</span>gather<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> t<span class="token punctuation">)</span><span class="token punctuation">.</span>view<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+    st <span class="token operator">=</span> sqrt_one_minus_alphas_cumprod<span class="token punctuation">.</span>gather<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> t<span class="token punctuation">)</span><span class="token punctuation">.</span>view<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+    mean <span class="token operator">=</span> torch<span class="token punctuation">.</span>sqrt<span class="token punctuation">(</span><span class="token number">1.0</span> <span class="token operator">/</span> at<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token punctuation">(</span>x <span class="token operator">-</span> <span class="token punctuation">(</span><span class="token number">1.0</span> <span class="token operator">-</span> at<span class="token punctuation">)</span> <span class="token operator">*</span> model<span class="token punctuation">(</span>x<span class="token punctuation">,</span> t<span class="token punctuation">.</span>repeat<span class="token punctuation">(</span>n_samples<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> st<span class="token punctuation">)</span>
+    var <span class="token operator">=</span> posterior_variance<span class="token punctuation">.</span>gather<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> t<span class="token punctuation">)</span><span class="token punctuation">.</span>view<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+    xt_pre <span class="token operator">=</span> mean <span class="token operator">+</span> torch<span class="token punctuation">.</span>sqrt<span class="token punctuation">(</span>var<span class="token punctuation">)</span> <span class="token operator">*</span> torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span>n_samples<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> xt_pre<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <blockquote>
-<p>脑图可拖动和放缩</p>
+<p>注意：反向过程需要计算给定$\boldsymbol{x}_0$下的后验分布</p>
+<img src="/2024/08/24/240824-toy-diffusion/core-eq-reverse.png" class="">
+
+<p>然而反向过程$\boldsymbol{x}_0$未知，DDPM采用的是网络去噪估计$\hat{\boldsymbol{x}}_0=\frac{1}{\sqrt{\bar{\alpha}_t}}(\boldsymbol{x}_t-\sqrt{1-\bar{\alpha}_t}\epsilon_\theta)$，带入上式即可得到反向核心公式</p>
 </blockquote>
-<h3 id="全局资源文件夹"><a href="#全局资源文件夹" class="headerlink" title="全局资源文件夹"></a>全局资源文件夹</h3><p>在<code>source</code>文件夹下新建一个<code>images</code>文件夹，把所有文章的图片资源都放里面，markdown文档内直接<code>![](/images/my-first-post-2.png)</code>访问。注意，<code>/</code>指的是根目录，对于hexo，<code>source</code>就是资源文件的根目录</p>
-<p><img src="/images/my-first-post-2.png"></p>
-<p>优点：方便快捷，统一管理，方便文件多次调</p>
-<p>缺点：文章较多时资源混乱</p>
-<h3 id="文章资源文件夹"><a href="#文章资源文件夹" class="headerlink" title="文章资源文件夹"></a>文章资源文件夹</h3><p>对于每篇文章单独建立一个资源文件夹，各自独立管理</p>
-<p>修改<code>_config.yaml</code>中的<code>post_asset_folder</code>值为<code>true</code></p>
-<p><code>hexo new 'title'</code>创建新post以后，会在<code>_post</code>文件夹下创建同名的文件夹和markdown文件，将图片资源(本文为<code>my-first-post-2-1.png</code>)放置文件夹内，可通过<code>asset_img</code>直接相对路径访问，markdown调节路径会比较繁琐</p>
-<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token punctuation">{</span>% asset_img my-first-post-2-1.png 文章资源文件夹图片展示 %<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="DDIM加速采样"><a href="#DDIM加速采样" class="headerlink" title="DDIM加速采样"></a>DDIM加速采样</h2><img src="/2024/08/24/240824-toy-diffusion/core-eq-final-ddim.png" class="">
 
-<img src="/2024/06/30/insert-image-in-hexo/my-first-post-2-1.png" class="" title="文章资源文件夹图片展示">
+<p>对应核心公式</p>
+<pre class="line-numbers language-none"><code class="language-none">def sample_ddim(x, t, eta = 1):
+    t = torch.tensor([t]).to(device)
+    at = alphas_cumprod.gather(-1, t).view(-1, 1)
+    at_1 = alphas_cumprod_prev.gather(-1, t).view(-1, 1)
+    sigma_t = eta * torch.sqrt((1 - at_1) / (1 - at) * (1 - at / at_1))
+    xt_pre = (
+        torch.sqrt(at_1 / at) * x 
+        + (torch.sqrt(1 - at_1 - sigma_t ** 2) - torch.sqrt(
+            (at_1 * (1 - at)) / at)) * model(x, t.repeat(n_samples))
+        + sigma_t * torch.randn_like(x)
+    )
+    return xt_pre<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/asset-folders">hexo中文文档</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/2301_77285173/article/details/130189857">在hexo博客中插入图片的方法</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.17lai.site/posts/cf0f47fd/#%E8%84%91%E5%9B%BE">夜法之书</a></p>
-<p><a target="_blank" rel="noopener" href="https://github.com/MaxChang3/hexo-markmap/blob/main/README_HANS.md">脑图</a></p>
+<h2 id="实验对比"><a href="#实验对比" class="headerlink" title="实验对比"></a>实验对比</h2><p>以一维数据为例，扩散模型学习给定噪声分布，完成后分别基于DDPM和DDIM进行生成</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">data <span class="token operator">=</span> torch<span class="token punctuation">.</span>cat<span class="token punctuation">(</span><span class="token punctuation">[</span>
+    torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">30000</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0.01</span> <span class="token operator">+</span> <span class="token number">0.5</span><span class="token punctuation">,</span>
+    torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">40000</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0.03</span> <span class="token operator">+</span> <span class="token number">0.1</span><span class="token punctuation">,</span>
+    torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">30000</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0.01</span> <span class="token operator">-</span> <span class="token number">0.4</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>结果如下</p>
+<img src="/2024/08/24/240824-toy-diffusion/hist-comp.png" class="">
+
+<p>可以看出，扩散模型基本可以学出目标数据分布。DDIM可能是由于模型太简单，加速不明显，一般可以10~20倍加速</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://space.bilibili.com/13355688?spm_id_from=333.976.0.0">Yuki大佬的扩散模型详解</a></p>
 <script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">
                 
             </div>
@@ -562,12 +620,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Hexo/">
-                                    <span class="chip bg-color">Hexo</span>
+                                <a href="/tags/Pytorch/">
+                                    <span class="chip bg-color">Pytorch</span>
                                 </a>
                             
-                                <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
-                                    <span class="chip bg-color">博客搭建</span>
+                                <a href="/tags/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/">
+                                    <span class="chip bg-color">扩散模型</span>
                                 </a>
                             
                         </div>
@@ -611,17 +669,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2024/07/01/blog-beautify/">
+                <a href="/2024/08/24/240824-toy-diffusion/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/47.jpg" class="responsive-img" alt="hexo+matery博客搭建之主题美化">
+                        <img src="/medias/featureimages/66.jpg" class="responsive-img" alt="ToyDL之扩散模型DDPM">
                         
-                        <span class="card-title">hexo+matery博客搭建之主题美化</span>
+                        <span class="card-title">ToyDL之扩散模型DDPM</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -631,30 +690,31 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-07-01
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-08-24
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" class="post-category">
-                                    博客搭建
+                            <a href="/categories/ToyDL/" class="post-category">
+                                    ToyDL
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Hexo/">
-                        <span class="chip bg-color">Hexo</span>
+                    <a href="/tags/Pytorch/">
+                        <span class="chip bg-color">Pytorch</span>
                     </a>
                     
-                    <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
-                        <span class="chip bg-color">博客搭建</span>
+                    <a href="/tags/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/">
+                        <span class="chip bg-color">扩散模型</span>
                     </a>
                     
                 </div>
@@ -668,13 +728,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2024/06/29/my-first-post/">
+                <a href="/2024/07/06/240706-pytorchrnn-implement/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="Hexo+matery博客搭建之框架搭建">
+                        <img src="/medias/featureimages/45.jpg" class="responsive-img" alt="ToyDL之Pytorch中RNN的内部实现">
                         
-                        <span class="card-title">Hexo+matery博客搭建之框架搭建</span>
+                        <span class="card-title">ToyDL之Pytorch中RNN的内部实现</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -685,14 +745,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-06-29
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-07-06
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" class="post-category">
-                                    博客搭建
+                            <a href="/categories/ToyDL/" class="post-category">
+                                    ToyDL
                                 </a>
                             
                             
@@ -702,12 +762,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Hexo/">
-                        <span class="chip bg-color">Hexo</span>
+                    <a href="/tags/Pytorch/">
+                        <span class="chip bg-color">Pytorch</span>
                     </a>
                     
-                    <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
-                        <span class="chip bg-color">博客搭建</span>
+                    <a href="/tags/RNN/">
+                        <span class="chip bg-color">RNN</span>
                     </a>
                     
                 </div>
@@ -1125,6 +1185,6 @@ $(function () {
 
 }
 
-<script src="/js/markmap.js"></script></body>
+</body>
 
 </html>
